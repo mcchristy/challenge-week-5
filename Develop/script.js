@@ -8,8 +8,7 @@ $(document).ready(function () {
 
   document.getElementsByClassName("btn saveBtn").value = localStorage.getItem("server");
 
-  let time = $("<p>");
-  let day = $("<p>");
+
   let section1 = $("#hour-9");
   let section2 = $("hour-10");
   let section3 = $("hour-11");
@@ -36,6 +35,9 @@ $(document).ready(function () {
   section11.val(localStorage.getItem("Entry11"));
   section12.val(localStorage.getItem("Entry12"));
 
+  var date = newDate();
+  var currentTime = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+  document.getElementById("currentDay").innerHTML = currentTime;
 
   
   // TODO: Add a listener for click events on the save button. This code should
