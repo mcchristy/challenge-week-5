@@ -3,41 +3,75 @@
 // in the html.
 $(document).ready(function () {
 
-  var input = document.getElementsByClassName("btn saveBtn");
-  localStorage.setItem("server",input.val());
+  $('.saveBtn').on('click', function (){
+    var input = $(this).siblings('.description').val()
+    var timeId = $(this).parent().attr('id')
+    localStorage.setItem(timeId, input)
+    console.log(timeId, input)
+  })
 
-  document.getElementsByClassName("btn saveBtn").value = localStorage.getItem("server");
+  let section1 = $("#hour-9 .description");
+  let section2 = $("#hour-10 .description");
+  let section3 = $("#hour-11 .description");
+  let section4 = $("#hour-12 .description");
+  let section5 = $("#hour-1 .description");
+  let section6 = $("#hour-2 .description");
+  let section7 = $("#hour-3 .description");
+  let section8 = $("#hour-4 .description");
+  let section9 = $("#hour-5 .description");
+  let section10 = $("#hour-6 .description");
+  let section11 = $("#hour-7 .description");
+  let section12 = $("#hour-8 .description");
+
+  section1.val(localStorage.getItem("hour-9"));
+  section2.val(localStorage.getItem("hour-10"));
+  section3.val(localStorage.getItem("hour-11"));
+  section4.val(localStorage.getItem("hour-12"));
+  section5.val(localStorage.getItem("hour-1"));
+  section6.val(localStorage.getItem("hour-2"));
+  section7.val(localStorage.getItem("hour-3"));
+  section8.val(localStorage.getItem("hour-4"));
+  section9.val(localStorage.getItem("hour-5"));
+  section10.val(localStorage.getItem("hour-6"));
+  section11.val(localStorage.getItem("hour-7"));
+  section12.val(localStorage.getItem("hour-8"));
+
+  
+  var date = dayjs().format('DD-MM-YYYY');
+  $('#currentDay').text(date);
+
+  //var currentTime = moment().format('HH');
+
+  function timeCheck() {
+    var currentHour = dayjs().hour()
+
+    $('.time-block').each(function(){
+      var timeSlot = parseInt($(this).attr('id').split('-')[1])
+      if(timeSlot < currentHour){
+        $(this).removeClass('future')
+        $(this).removeClass('present')
+        $(this).addClass('past')
+      } else if ( timeSlot === currentHour){
+        $(this).removeClass('future')
+        $(this).removeClass('past')
+        $(this).addClass('present')
+      } else {
+        $(this).removeClass('past')
+        $(this).removeClass('present')
+        $(this).addClass('future')
+      }
+    })
+  }
+  timeCheck()
+
+  setInterval(timeCheck, 3600000)
+  })
 
 
-  let section1 = $("#hour-9");
-  let section2 = $("hour-10");
-  let section3 = $("hour-11");
-  let section4 = $("hour-12");
-  let section5 = $("hour-1");
-  let section6 = $("hour-2");
-  let section7 = $("hour-3");
-  let section8 = $("hour-4");
-  let section9 = $("hour-5");
-  let section10 = $("hour-6");
-  let section11= $("hour-7");
-  let section12= $("hour-8");
 
-  section1.val(localStorage.getItem("Entry1"));
-  section2.val(localStorage.getItem("Entry2"));
-  section3.val(localStorage.getItem("Entry3"));
-  section4.val(localStorage.getItem("Entry4"));
-  section5.val(localStorage.getItem("Entry5"));
-  section6.val(localStorage.getItem("Entry6"));
-  section7.val(localStorage.getItem("Entry7"));
-  section8.val(localStorage.getItem("Entry8"));
-  section9.val(localStorage.getItem("Entry9"));
-  section10.val(localStorage.getItem("Entry10"));
-  section11.val(localStorage.getItem("Entry11"));
-  section12.val(localStorage.getItem("Entry12"));
 
-  var date = newDate();
-  var currentTime = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-  document.getElementById("currentDay").innerHTML = currentTime;
+  
+
 
   
   // TODO: Add a listener for click events on the save button. This code should
@@ -58,4 +92,4 @@ $(document).ready(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-});
+
