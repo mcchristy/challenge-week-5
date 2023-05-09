@@ -40,8 +40,6 @@ $(document).ready(function () {
   var date = dayjs().format('DD-MM-YYYY');
   $('#currentDay').text(date);
 
-  //var currentTime = moment().format('HH');
-
   function timeCheck() {
     var currentHour = dayjs().hour()
 
