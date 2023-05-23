@@ -1,7 +1,7 @@
 # challenge-week-5 Day Planner Project
 This Project was designed to create a day planner that helps organize each day into hours.
 
-![Alt text](Assets/images/challenge-5-application-live.png)
+![deployed planner application](Assets/images/deployed-planner-app.jpg)
 
 ## Table of Contents
 -[About]
